@@ -1,9 +1,7 @@
 
 export default interface Subtask {
-  subtask_id: string;
+  subtaskId: string;
   title: string;
-  description: string;
-  instructions: string;
   created_at: Date; 
   updated_at: Date;
 }
