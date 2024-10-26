@@ -1,10 +1,10 @@
 import express from 'express'
-import { users} from './data'
+import {users} from './data'
 
 const app = express()
 const port = 4500;
 
-app.use(express.json()); 
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Welcome to the hackathon app!');
@@ -25,3 +25,9 @@ app.get('/', (req, res) => {
   app.listen(() => {
     console.log(`Server running on port ${port}`);
   });
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Try accessing: http://127.0.0.1:${port}`);
+});
+
