@@ -2,9 +2,14 @@ import login_img from "@/assets/login.jpg";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    navigate("/");
+  }
   return (
     <div role="presentation" className="flex w-full  min-h-svh">
       <section className="hidden w-1/2  lg:flex ">
@@ -15,7 +20,10 @@ function Login() {
         />
       </section>
       <section className="lg:w-1/2 flex items-center justify-center mx-auto ">
-        <form className="w-72 md:w-96 py-6 mx-auto flex flex-col justify-center items-center border rounded-md  ">
+        <form
+          onSubmit={handleSubmit}
+          className="w-72 md:w-96 py-6 mx-auto flex flex-col justify-center items-center border rounded-md  "
+        >
           <h3 className="scroll-m-20 text-1xl font-semibold tracking-tight">
             Immigration
           </h3>
