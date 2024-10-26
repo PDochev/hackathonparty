@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "placeholder",
+    "title": "Completed Subtask",
+    "description": "A subtask that has been completed by a user",
+    "type": "object",
+    "properties": {
+        "user_id": {
+            "type": "string"
+        },
+        "subtask_id": {
+            "type": "string"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        }
+    },
+    "required": [
+        "user_id",
+        "subtask_id",
+        "created_at"
+    ]
+}
