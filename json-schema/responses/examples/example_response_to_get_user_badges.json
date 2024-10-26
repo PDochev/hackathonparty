@@ -1,0 +1,16 @@
+[
+    {
+        "badge_id": "nhs_registered",
+        "title": "NHS Registered",
+        "description": "Completed the required tasks to make use of the NHS",
+        "created_at": "1963-04-24T04:15:53.0Z",
+        "updated_at": "1910-11-07T08:30:48.0Z"
+    },
+    {
+        "badge_id": "local_community_visitor",
+        "title": "Community Member",
+        "description": "Visited 3 local communities",
+        "created_at": "1963-04-24T04:15:53.0Z",
+        "updated_at": "1910-11-07T08:30:48.0Z"
+    }
+]
