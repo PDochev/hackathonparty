@@ -1,12 +1,10 @@
-import Navbar from "@/components/ui/Navbar";
+import { Header } from "@/components/ui/Header";
 import { Progress } from "@/components/ui/progress";
 
 export default function Home() {
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
+      <Header />
       <main>
         <div className="flex flex-col items-center  justify-center mx-auto">
           <div className=" mt-12">
