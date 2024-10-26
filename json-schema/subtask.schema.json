@@ -5,7 +5,7 @@
     "description": "A description of a task that is either not done or done",
     "type": "object",
     "properties": {
-        "task_id": {
+        "subtask_id": {
             "type": "string"
         },
         "title": {
@@ -27,7 +27,7 @@
         }
     },
     "required": [
-        "user_id",
+        "subtask_id",
         "title",
         "description",
         "instructions",
