@@ -18,7 +18,7 @@
         "address": {
             "type": "string"
         },
-        "level": {
+        "rank": {
             "type": "string"
         },
         "profile_pic_url": {
@@ -39,7 +39,7 @@
         "name",
         "email",
         "address",
-        "level",
+        "rank",
         "profile_pic_url",
         "created_at",
         "updated_at"
