@@ -1,6 +1,10 @@
 [
   {
     "task_id": "dolor in incididunt proident",
+    "title": "anim esse",
+    "description": "cupidatat",
+    "created_at": "1914-01-12T14:31:56.0Z",
+    "updated_at": "1940-08-30T19:28:27.0Z",
     "subtasks": [
       {
         "subtask_id": "dolore consequat",
@@ -38,10 +42,6 @@
         "updated_at": "1891-01-27T02:03:03.0Z",
         "is_completed": true
       }
-    ],
-    "title": "anim esse",
-    "description": "cupidatat",
-    "created_at": "1914-01-12T14:31:56.0Z",
-    "updated_at": "1940-08-30T19:28:27.0Z"
+    ]
   }
 ]
