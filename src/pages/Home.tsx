@@ -1,32 +1,11 @@
 import Navbar from "@/components/ui/Navbar";
 import { Progress } from "@/components/ui/progress";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   return (
     <>
       <header>
-        <nav role="navigation">
-          <Navbar>
-            <div className="flex items-center justify-between w-full m-2">
-              <h4 className="ml-4 text-md font-semibold tracking-tight scroll-m-20 ">
-                Immigration App
-              </h4>
-              <div className="flex items-center gap-4 mr-4">
-                <small className="text-sm font-medium leading-none">
-                  Plamen
-                </small>
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback>Plamen</AvatarFallback>
-                </Avatar>
-              </div>
-            </div>
-          </Navbar>
-        </nav>
+        <Navbar />
       </header>
       <main>
         <div className="flex flex-col items-center  justify-center mx-auto">
