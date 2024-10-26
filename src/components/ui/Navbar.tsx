@@ -2,8 +2,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import logo from "@/assets/settlebuddyicon.png";
 import badge from "@/assets/piggy-bank.png";
 import { Link } from "react-router-dom";
+import { useUserStore } from "@/store";
 
 function Navbar() {
+  const userName = useUserStore(({ name }) => name);
+
   return (
     <nav role="navigation">
       <div
@@ -15,11 +18,12 @@ function Navbar() {
             <img src={logo} alt="SettleBuddy logo" className="w-6 h-6 ml-4" />
             <h4 className="ml-2 text-md font-semibold tracking-tight scroll-m-20 ">
               <Link to="/"> Immigration App</Link>
-            </h4>g
+            </h4>
+            g
           </div>
           <div className="flex items-center gap-4 mr-4">
             <small className="text-sm font-medium leading-none">
-              Your name/email
+              {userName}
             </small>
             <Avatar>
               <AvatarImage src={badge} alt="@shadcn" />

@@ -1,9 +1,9 @@
 import { ExpProgress } from "@/components/business/ExpProgress";
 import { Layout } from "@/components/Layout";
+import { useUserStore } from "@/store";
 
 export default function Home() {
-  // TODO: get this from state management library
-  const userName = "Anom";
+  const userName = useUserStore(({ name }) => name);
   // TODO: get these values from API
   const progressValue = 40;
   const userTitle = "Newcomer";

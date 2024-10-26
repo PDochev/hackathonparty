@@ -6,6 +6,6 @@ interface UserState {
 }
 
 export const useUserStore = create<UserState>()(() => ({
-  name: "",
+  name: "Anom",
   id: "",
 }));
