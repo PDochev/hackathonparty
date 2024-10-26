@@ -1,8 +1,6 @@
 import express, { Express, Request, Response } from "express";
-import { users, tasks, userTaskProgress, badges} from './data'
-import {Simulate} from "react-dom/test-utils";
-import progress = Simulate.progress;
-// import cors from 'cors';
+import { users, tasks, userTaskProgress, userSubstaskProgress, badges} from './data'
+import cors from 'cors';
 
 const app: Express = express()
 const port = 3000;
@@ -10,19 +8,17 @@ const port = 3000;
 
 app.use(express.json()); 
 
-// var whitelist = ['http://localhost:5173']
 
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin!) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   },
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   allowedHeaders: ['Content-Type'],
-// }));
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',  
+  ],
+  methods: 'GET,POST,PUT,DELETE',  
+  allowedHeaders: 'Content-Type,Authorization', 
+  credentials: true 
+};
+
+app.use(cors(corsOptions));
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to the hackathon app!');
@@ -42,33 +38,34 @@ app.get('/', (req: Request, res: Response) => {
   });
 
 // get_user_task_list
+app.get('/users/:userId/incomplete-tasks', (req, res) => {
+  const userId = req.params.userId;
 
-// app.get('/users/:userId/incomplete-tasks', (req: Request, res: Response) => {
-//   const userId = req.params.userId;
-//   const incompleteTasks = tasks
-//     .filter(task => {
-//       const taskProgress = userTaskProgress.find(
-//         progress => progress.userId === userId && progress.taskId === task.taskId
-//       );
-//       return taskProgress && !taskProgress.isCompleted;
-//     })
-//     .map(task => {
-//       const updatedSubtasks = task.subtasks.map(subtask => {
-//         const userSubtaskProgress = updatedSubtasks.find(
-//           progress => progress.userId === userId && progress.subtaskId === subtask.subtaskId
-//         );
-//         return {
-//           ...subtask,
-//           isCompleted: subtaskProgress ? subtaskProgress.isCompleted : false,
-//         };
-//       });
-//       return { ...task, subtasks: updatedSubtasks };
-//     });
+  const incompleteTasks = tasks
+    .filter(task => {
+      const taskProgress = userTaskProgress.find(
+        progress => progress.userId === userId && progress.taskId === task.taskId
+      );
+      return taskProgress && !taskProgress.isCompleted;
+    })
+    .map(task => {
+      const updatedSubtasks = task.subtasks.map(subtask => {
+        const subtaskProgress = userSubstaskProgress.find(
+          progress => progress.userId === userId && progress.subtaskId === subtask.subtaskId
+        );
+        return {
+          ...subtask,
+          isCompleted: subtaskProgress ? subtaskProgress.isCompleted : false,
+        };
+      });
+      return { ...task, subtasks: updatedSubtasks };
+    });
 
-//   res.json(incompleteTasks);
-// });
+  res.status(200).json(incompleteTasks);
+});
 
 
+// get_user_badges
 app.get('/user/badges/:user_id', (req: any, res: any) => {
   const userId = req.params.user_id;
   const completedTasksIds = userTaskProgress
@@ -85,6 +82,8 @@ app.get('/user/badges/:user_id', (req: any, res: any) => {
   return res.status(404).json({ message: 'No badges found' });
 });
 
+
+// get_badge_task
 app.get('/badge/task/:badge_id', (req: any, res: any) => {
   const badgeId = req.params.badge_id;
   const badge = badges.find(badge => badge.badgeId == badgeId);
