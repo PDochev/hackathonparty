@@ -1,24 +1,22 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import AppPage from "./pages/AppPage";
+import Badges from "./pages/Badges";
+import Files from "./pages/Files";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
-
-const router = createBrowserRouter([
-  {
-    children: [
-      {
-        path: "/app",
-        element: <AppPage />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-    ],
-  },
-]);
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/badges" element={<Badges />} />
+          <Route path="/files" element={<Files />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
 export default App;
