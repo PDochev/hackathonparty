@@ -1,6 +1,6 @@
 import User from './interfaces/user'
 import Task from './interfaces/task'
-import UserTaskProgress from './interfaces/UserTaskProgress'
+import UserTaskProgress from './interfaces/userTaskProgress'
 import UserSubtaskProgress from './interfaces/userSubtaskProgress'
 
 export const users: User[] = [
