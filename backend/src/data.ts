@@ -1,6 +1,6 @@
 export const users = [
   {
-    "user_id": "pariatur Ut incididunt",
+    "user_id": "pariatur",
     "name": "Lorem Ipsum",
     "email": "v2nEMedp@fgqoRdtce.os",
     "address": "qui voluptate",
