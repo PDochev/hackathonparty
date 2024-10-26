@@ -1,7 +1,7 @@
 import Navbar from "@/components/custom/Navbar";
 import { Progress } from "@/components/ui/progress";
 
-export default function Home() {
+export default function AppPage() {
   return (
     <>
       <header>
