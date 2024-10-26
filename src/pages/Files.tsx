@@ -96,14 +96,12 @@ export default function Files() {
                   <DialogTitle className="text-center m-2">
                     <h2>Your Files</h2>
                     <div className="grid grid-cols-2 items-center justify-center">
-
                       {files.map(item =>
                         <div className="p-1 m-2">
                           <img src={docs_icon} className="w-16 h-16 m-auto rounded-md" />
                           <p className="text-sm text-center p-1">{item}</p>
                         </div>
                       )}
-
                     </div>
                   </DialogTitle>
                 </DialogHeader>
