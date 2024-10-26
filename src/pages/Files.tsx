@@ -3,6 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import docs_icon from "@/assets/google-docs.png";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function Files() {
 
@@ -24,21 +32,24 @@ export default function Files() {
     console.log("viewing docs")
   }
 
+  const files = ["CouncilTaxMar23", "CouncilTaxMay22", "OctopusEneJan24", "TriodosBankAug23", "OctopusEneJun24", "OctopusEneSep24"
+  ]
+
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center">
         <div className="flex items-center justify-center mt-10">
           <h3 className="text-2xl font-semibold">
-            Your Documents:
+            Your Documents
           </h3>
         </div>
-        <div className="w-full max-w-sm items-center gap-1.5 mt-6">
-          <div className="uploaddocCard bg-gray-200 flex flex-col p-2 m-2 shadow-md">
-            <div className={`${!loading ? "hidden" : "h-60 text-center p-20"}`}><p>UPLOADING...</p></div>
-            <div className={`${loading ? "hidden" : ""}`}>
+        <div className="w-full max-w-sm items-center mt-6">
+          <div className="uploaddocCard w-80 h-72  flex flex-col items-center justify-center border p-10 rounded-md bg-background m-auto drop-shadow-lg">
+            <div className={`${!loading ? "hidden" : "h-60 text-center flex p-20"}`}><p>UPLOADING...</p></div>
+            <div className={`${loading ? "hidden" : "flex flex-col items-center justify-center"}`}>
               <Label className="m-2 text-center" htmlFor="picture">Upload a new document</Label>
               <Input className="m-2" id="picture" type="file" />
-              <div className="selectinput flex flex-col p-1 m-2 gap-0">
+              <div className="selectinput flex flex-col p-1 m-2 gap-2">
                 <label className="flex-1">
                   <input
                     type="radio"
@@ -49,7 +60,6 @@ export default function Files() {
                   />
                   Council Tax Bill
                 </label>
-                <br />
                 <label className="flex-1">
                   <input
                     type="radio"
@@ -59,7 +69,7 @@ export default function Files() {
                   />
                   Water Bill
                 </label>
-                <br />
+
                 <label className="flex-1">
                   <input
                     type="radio"
@@ -70,14 +80,35 @@ export default function Files() {
                   Bank Statement
                 </label>
               </div>
-              <br />
+
               <Button className="mx-2 p-2 bg-green-400" onClick={uploadDoc} type="submit">Upload {selectedBill}</Button>
             </div>
           </div>
           <br />
-          <div className="uploaddocCard bg-gray-200 flex flex-col p-2 mx-2 shadow-md">
-            <p className="text-center text-md">SettleBuddy keeps all your documents safely in one place.</p>
-            <Button className="m-2 p-2 bg-green-400" type="submit" onClick={viewDocs} >View your uploaded documents {loading ? "true" : "bye"}</Button>
+          <div className="uploaddocCard w-80 h-32 flex flex-col items-center justify-center border p-10 rounded-md bg-background drop-shadow-lg m-auto">
+            <p className="text-center text-md mb-4">SettleBuddy keeps all your documents safely in one place.</p>
+            <Dialog>
+              <DialogTrigger>
+                <Button className="p-2 bg-green-400" type="submit" onClick={viewDocs} >View your uploaded documents</Button>
+              </DialogTrigger>
+              <DialogContent className="w-80 md:w-96 lg:w-96  flex justify-center items-center rounded-md">
+                <DialogHeader>
+                  <DialogTitle className="text-center m-2">
+                    <h2>Your Files</h2>
+                    <div className="grid grid-cols-2 items-center justify-center">
+
+                      {files.map(item =>
+                        <div className="p-1 m-2">
+                          <img src={docs_icon} className="w-16 h-16 m-auto rounded-md" />
+                          <p className="text-sm text-center p-1">{item}</p>
+                        </div>
+                      )}
+
+                    </div>
+                  </DialogTitle>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div >
