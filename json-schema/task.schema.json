@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "placeholder",
+    "title": "Task",
+    "description": "A task that is completed in a number of steps",
+    "type": "object",
+    "properties": {
+        "task_id": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time"
+        }
+    },
+    "required": [
+        "task_id",
+        "title",
+        "description",
+        "created_at",
+        "updated_at"
+    ]
+}

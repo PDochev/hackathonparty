@@ -1,0 +1,47 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "placeholder",
+    "title": "User Profile",
+    "description": "A collection of a user's personal information",
+    "type": "object",
+    "properties": {
+        "user_id": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string",
+            "format": "email"
+        },
+        "address": {
+            "type": "string"
+        },
+        "level": {
+            "type": "string"
+        },
+        "profile_pic_url": {
+            "type": "string",
+            "format": "uri"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time"
+        }
+    },
+    "required": [
+        "user_id",
+        "name",
+        "email",
+        "address",
+        "level",
+        "profile_pic_url",
+        "created_at",
+        "updated_at"
+    ]
+}
