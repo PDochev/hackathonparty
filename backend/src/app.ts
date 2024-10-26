@@ -1,24 +1,27 @@
 import express from 'express'
-import sequelize from './db'
+import { users} from './data'
 
 const app = express()
-const port = 8000;
+const port = 4500;
 
 app.use(express.json()); 
 
-app.get('/', (req: any, res: any) => {
-  res.send('Welcome to the Express & Sequelize App!');
+app.get('/', (req, res) => {
+  res.send('Welcome to the hackathon app!');
 });
 
-sequelize
-  .sync({ alter: true }) 
-  .then(() => {
-    console.log('Database synchronized');
-    app.listen(() => {
-      console.log(`Server running on port ${port}`);
-    });
-  })
-  .catch((error : any) => {
-    console.error('Error syncing the database:', error);
+  app.get('/users/:id', (req: any, res: any) => {
+    const userId = req.params.id;
+    const user = users.find(u => u.user_id === userId);
+  
+    if (user) {
+      console.log(user)
+      return res.status(200).json(user); 
+    }
+  
+    return res.status(404).json({ message: 'User not found' }); 
   });
 
+  app.listen(() => {
+    console.log(`Server running on port ${port}`);
+  });
