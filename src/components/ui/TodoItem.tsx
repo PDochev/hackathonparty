@@ -10,7 +10,7 @@ interface Props {
 
 export function TodoItem({ title, completed, id, onToggle }: Props) {
   return (
-    <div className="flex items-center space-x-4 p-4">
+    <div className="flex items-center space-x-4 p-2">
       <Checkbox
         checked={completed}
         onCheckedChange={() => onToggle?.(id)}
