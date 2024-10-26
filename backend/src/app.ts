@@ -1,5 +1,5 @@
 import express from 'express'
-import {users, userTaskProgress, badges} from './data'
+import {users, userTaskProgress, badges, tasks} from './data'
 import {Simulate} from "react-dom/test-utils";
 import progress = Simulate.progress;
 
@@ -40,6 +40,24 @@ app.get('/user/badges/:user_id', (req: any, res: any) => {
   return res.status(404).json({ message: 'No badges found' });
 });
 
-  app.listen(() => {
-    console.log(`Server running on port ${port}`);
-  });
+app.get('/badge/task/:badge_id', (req: any, res: any) => {
+  const badgeId = req.params.badge_id;
+  const badge = badges.find(badge => badge.badgeId == badgeId);
+
+  if (!badge){
+    return res.status(404).json({ message: 'No badge with given id found' });
+  }
+
+  const associatedTask = tasks.find(task => task.taskId === badge.taskId);
+
+  if (associatedTask) {
+    console.log(associatedTask)
+    return res.status(200).json(associatedTask);
+  }
+
+  return res.status(404).json({ message: 'No task found for the associated badge' });
+});
+
+app.listen(() => {
+  console.log(`Server running on port ${port}`);
+});
