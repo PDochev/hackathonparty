@@ -2,7 +2,7 @@ import login_img from "@/assets/login.jpg";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
@@ -32,8 +32,8 @@ function Login() {
           </h2>
 
           <div className="grid w-3/4 max-w-sm items-center gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input type="email" id="email" placeholder="Email" required />
+            <Label htmlFor="username">Username</Label>
+            <Input type="text" id="username" placeholder="Username" required />
             <Label htmlFor="password">Password</Label>
             <Input
               type="password"
@@ -45,12 +45,6 @@ function Login() {
           <Button type="submit" className="w-3/4 mt-4">
             Login
           </Button>
-          <p className="text-sm leading-7 [&:not(:first-child)]:mt-6">
-            Don't have an account ?
-            <Link className="text-blue-600 ml-2" to="/register">
-              Create account
-            </Link>
-          </p>
         </form>
       </section>
     </div>
