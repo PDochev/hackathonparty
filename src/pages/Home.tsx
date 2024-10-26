@@ -1,4 +1,4 @@
-import Navbar from "@/components/custom/Navbar";
+import Navbar from "@/components/ui/Navbar";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
