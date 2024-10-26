@@ -3,13 +3,22 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "@/store";
 
 function Login() {
   const navigate = useNavigate();
+  const updateUsername = useUserStore(({ updateName }) => updateName);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    navigate("/");
+    const formData = new FormData(e.currentTarget);
+    const username = formData.get("username") as string;
+
+    if (username) {
+      updateUsername(username);
+      navigate("/");
+    }
   }
+
   return (
     <div role="presentation" className="flex w-full  min-h-svh">
       <section className="hidden w-1/2  lg:flex ">
@@ -33,7 +42,13 @@ function Login() {
 
           <div className="grid w-3/4 max-w-sm items-center gap-2">
             <Label htmlFor="username">Username</Label>
-            <Input type="text" id="username" placeholder="Username" required />
+            <Input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Username"
+              required
+            />
             <Label htmlFor="password">Password</Label>
             <Input
               type="password"

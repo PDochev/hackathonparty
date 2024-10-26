@@ -5,7 +5,12 @@ interface UserState {
   id: string;
 }
 
-export const useUserStore = create<UserState>()(() => ({
-  name: "",
+type Action = {
+  updateName: (name: UserState["name"]) => void;
+};
+
+export const useUserStore = create<UserState & Action>()((set) => ({
+  name: "Anom",
   id: "",
+  updateName: (name) => set(() => ({ name })),
 }));
