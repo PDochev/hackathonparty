@@ -1,3 +1,9 @@
+import { Layout } from "@/components/Layout";
+
 export default function Badges() {
-  return <h1>Badges</h1>;
+  return (
+    <Layout>
+      <h1>Badges</h1>
+    </Layout>
+  );
 }

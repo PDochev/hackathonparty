@@ -1,10 +1,9 @@
-import { Header } from "@/components/ui/Header";
+import { Layout } from "@/components/Layout";
 import { Progress } from "@/components/ui/progress";
 
 export default function Home() {
   return (
-    <>
-      <Header />
+    <Layout>
       <main>
         <div className="flex flex-col items-center  justify-center mx-auto">
           <div className=" mt-12">
@@ -19,6 +18,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-    </>
+    </Layout>
   );
 }
