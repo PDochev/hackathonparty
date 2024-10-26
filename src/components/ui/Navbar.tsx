@@ -15,7 +15,7 @@ function Navbar() {
             <img src={logo} alt="SettleBuddy logo" className="w-6 h-6 ml-4" />
             <h4 className="ml-2 text-md font-semibold tracking-tight scroll-m-20 ">
               <Link to="/"> Immigration App</Link>
-            </h4>g
+            </h4>
           </div>
           <div className="flex items-center gap-4 mr-4">
             <small className="text-sm font-medium leading-none">
