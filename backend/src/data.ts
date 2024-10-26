@@ -2,6 +2,7 @@ import User from './interfaces/user'
 import Task from './interfaces/task'
 import UserTaskProgress from './interfaces/userTaskProgress'
 import UserSubtaskProgress from './interfaces/userSubtaskProgress'
+import Badge from "./interfaces/badge";
 
 export const users: User[] = [
   {
@@ -91,3 +92,21 @@ export const userSubstaskProgress: UserSubtaskProgress[] = [
     isCompleted: false
   }
 ]
+
+export const badges: Badge[] =
+    [
+      {
+        badgeId: 'mybadge1',
+        name: "The first badge",
+        taskId: '1',
+        created_at: new Date('2022-01-01T10:00:00Z'),
+        updated_at: new Date('2022-01-01T10:00:00Z')
+      },
+      {
+        badgeId: 'mybadge2',
+        name: "The second badge",
+        taskId: '2',
+        created_at: new Date('2022-01-01T10:00:00Z'),
+        updated_at: new Date('2022-01-01T10:00:00Z')
+      }
+    ]

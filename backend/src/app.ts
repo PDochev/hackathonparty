@@ -1,7 +1,8 @@
 import express, { Express, Request, Response } from "express";
-import { users, tasks, userTaskProgress} from './data'
+import { users, tasks, userTaskProgress, badges} from './data'
+import {Simulate} from "react-dom/test-utils";
+import progress = Simulate.progress;
 // import cors from 'cors';
-
 
 const app: Express = express()
 const port = 3000;
@@ -66,6 +67,41 @@ app.get('/', (req: Request, res: Response) => {
 
 //   res.json(incompleteTasks);
 // });
+
+
+app.get('/user/badges/:user_id', (req: any, res: any) => {
+  const userId = req.params.user_id;
+  const completedTasksIds = userTaskProgress
+      .filter( progress => progress.userId === userId && progress.isCompleted)
+      .map(progress => progress.taskId);
+
+  const earnedBadges = badges.filter(badge => completedTasksIds.includes(badge.taskId));
+
+  if (earnedBadges) {
+    console.log(earnedBadges)
+    return res.status(200).json(earnedBadges);
+  }
+
+  return res.status(404).json({ message: 'No badges found' });
+});
+
+app.get('/badge/task/:badge_id', (req: any, res: any) => {
+  const badgeId = req.params.badge_id;
+  const badge = badges.find(badge => badge.badgeId == badgeId);
+
+  if (!badge){
+    return res.status(404).json({ message: 'No badge with given id found' });
+  }
+
+  const associatedTask = tasks.find(task => task.taskId === badge.taskId);
+
+  if (associatedTask) {
+    console.log(associatedTask)
+    return res.status(200).json(associatedTask);
+  }
+
+  return res.status(404).json({ message: 'No task found for the associated badge' });
+});
 
 app.listen(port, (err?: Error) => {
   if (err) {
