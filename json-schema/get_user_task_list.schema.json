@@ -1,0 +1,77 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "placeholder",
+    "title": "User Task List",
+    "description": "The list of tasks for a given user",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "task_id": {
+                "type": "string"
+            },
+            "subtasks": {
+                "type" : "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "subtask_id": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "instructions": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "updated_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "is_completed": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "subtask_id",
+                        "title",
+                        "description",
+                        "instructions",
+                        "created_at",
+                        "updated_at",
+                        "is_completed"
+                    ]
+                }
+            },
+            "title": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "created_at": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "updated_at": {
+                "type": "string",
+                "format": "date-time"
+            }
+        },
+        "required": [
+            "task_id",
+            "subtasks",
+            "title",
+            "description",
+            "created_at",
+            "updated_at"
+        ]
+    }
+}
