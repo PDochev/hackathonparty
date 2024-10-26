@@ -3,14 +3,15 @@ import logo from "@/assets/settlebuddyicon.png";
 import badge from "@/assets/piggy-bank.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useUserStore } from "@/store";
 
 function Navbar() {
-
-  const [navbarOpen, setNavbarOpen] = useState(false)
+  const userName = useUserStore(({ name }) => name);
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   const toggleNav = () => {
-    navbarOpen ? setNavbarOpen(false) : setNavbarOpen(true)
-  }
+    navbarOpen ? setNavbarOpen(false) : setNavbarOpen(true);
+  };
 
   return (
     <nav role="navigation">
@@ -27,20 +28,34 @@ function Navbar() {
           </div>
           <div className="flex items-center gap-4 mr-4">
             <small className="text-sm font-medium leading-none">
-              Your name/email
+              {userName}
             </small>
             <Avatar>
               <AvatarImage src={badge} alt="@shadcn" />
               <AvatarFallback>Badge</AvatarFallback>
             </Avatar>
           </div>
-          <a onClick={toggleNav} className="text-xl w-6">{navbarOpen ? "x" : "^"}</a>
+          <a onClick={toggleNav} className="text-xl w-6">
+            {navbarOpen ? "x" : "^"}
+          </a>
         </div>
       </div>
-      <div className={`${!navbarOpen ? "hidden" : "bg-grey-100 w-full h-16 flex flex-row items-center justify-center border-b-2"}`}>
-        <a href="/" className="flex-1 text-center">Home</a>
-        <a href="/badges" className="flex-1 text-center border-x-2">Badges</a>
-        <a href="/files" className="flex-1 text-center">Files</a>
+      <div
+        className={`${
+          !navbarOpen
+            ? "hidden"
+            : "bg-grey-100 w-full h-16 flex flex-row items-center justify-center border-b-2"
+        }`}
+      >
+        <a href="/" className="flex-1 text-center">
+          Home
+        </a>
+        <a href="/badges" className="flex-1 text-center border-x-2">
+          Badges
+        </a>
+        <a href="/files" className="flex-1 text-center">
+          Files
+        </a>
       </div>
     </nav>
   );
