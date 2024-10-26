@@ -34,10 +34,10 @@ function Navbar() {
               <AvatarImage src={badge} alt="@shadcn" />
               <AvatarFallback>Badge</AvatarFallback>
             </Avatar>
+            <a onClick={toggleNav} className="text-xl w-6">
+              {navbarOpen ? "x" : "^"}
+            </a>
           </div>
-          <a onClick={toggleNav} className="text-xl w-6">
-            {navbarOpen ? "x" : "^"}
-          </a>
         </div>
       </div>
       <div
