@@ -1,0 +1,10 @@
+{
+    "user_id": "person1",
+    "name": "Dr. Person Being",
+    "email": "personbeing@agent.com",
+    "address": "8 Entity Road, Philosophia",
+    "rank": "Newcomer",
+    "profile_pic_url": "https://my-image-hosting-domain.com/personbeing_candid.jpg",
+    "created_at": "1931-04-10T07:57:39.0Z",
+    "updated_at" : "1931-04-10T07:57:39.0Z"
+}
