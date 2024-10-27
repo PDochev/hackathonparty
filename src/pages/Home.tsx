@@ -6,59 +6,61 @@ import { Typography } from "@/components/ui/Typography";
 import { useEffect, useState } from "react";
 
 interface User {
-  userId: string;            
-  name: string;                          
-  level: string;               
-  created_at: Date;            
+  userId: string;
+  name: string;
+  level: string;
+  created_at: Date;
   updated_at: Date;
 }
 
 interface Task {
-  taskId: string;             
-  title: string;               
-  created_at: Date;            
+  taskId: string;
+  title: string;
+  created_at: Date;
   updated_at: Date;
-  subtasks: Subtask[]            
+  subtasks: Subtask[];
 }
 
 interface Subtask {
   subtaskId: string;
   title: string;
-  created_at: Date; 
+  created_at: Date;
   updated_at: Date;
 }
 
 export default function Home() {
   // const userName = useUserStore(({ name }) => name);
   // TODO: get these values from API
-  const [user, setUser] = useState<User>()
-  const [userTasks, setUserTasks] = useState<Task[]>()
+  const [user, setUser] = useState<User>();
+  const [userTasks, setUserTasks] = useState<Task[]>();
   const progressValue = 40;
   const userTitle = "Newcomer";
   const leftPoints = 30;
 
   function getUser() {
     fetch("http://localhost:3000/users/1")
-      .then(response => response.json())
-      .then(data => setUser(data))
+      .then((response) => response.json())
+      .then((data) => setUser(data));
   }
 
-  function getTasks(){
+  function getTasks() {
     fetch("http://localhost:3000/users/1/incomplete-tasks")
-    .then(response => response.json())
-    .then(data => setUserTasks(data))
+      .then((response) => response.json())
+      .then((data) => setUserTasks(data));
   }
 
   useEffect(() => {
     getUser();
     getTasks();
-  },[])
+  }, []);
 
   return (
     <Layout>
       <main>
-        <div className="flex flex-col items-center justify-center mx-auto">
-          <Typography.H3>Welcome back {user?.name}</Typography.H3>
+        <div className="flex flex-col items-center justify-center mx-auto mt-6 mb-">
+          <Typography.H3 className="mb-4">
+            Welcome back {user?.name}
+          </Typography.H3>
           <ExpProgress
             value={progressValue}
             userTitle={userTitle}
