@@ -64,6 +64,18 @@ app.get('/users/:userId/incomplete-tasks', (req, res) => {
   res.status(200).json(incompleteTasks);
 });
 
+//get completed tasks
+app.get('/users/:userId/complete-tasks', (req, res) => {
+  const userId = req.params.userId;
+  const completedTasks = tasks
+    .filter(task => {
+      const taskProgress = userTaskProgress.find(
+        progress => progress.userId === userId && progress.taskId === task.taskId
+      );
+      return taskProgress && taskProgress.isCompleted;
+    });
+    res.status(200).json(completedTasks)
+})
 
 // get_user_badges
 app.get('/user/badges/:user_id', (req: any, res: any) => {
