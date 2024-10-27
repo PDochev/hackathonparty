@@ -30,7 +30,6 @@ app.get('/users/:id', (req: any, res: any) => {
   const user = users.find(u => u.userId === userId);
 
   if (user) {
-    console.log(user)
     return res.status(200).json(user);
   }
 
@@ -87,10 +86,8 @@ app.get('/user/badges/:user_id', (req: any, res: any) => {
   const earnedBadges = badges.filter(badge => completedTasksIds.includes(badge.taskId));
 
   if (earnedBadges) {
-    console.log(earnedBadges)
     return res.status(200).json(earnedBadges);
   }
-
   return res.status(404).json({ message: 'No badges found' });
 });
 
@@ -107,7 +104,6 @@ app.get('/badge/task/:badge_id', (req: any, res: any) => {
   const associatedTask = tasks.find(task => task.taskId === badge.taskId);
 
   if (associatedTask) {
-    console.log(associatedTask)
     return res.status(200).json(associatedTask);
   }
 
