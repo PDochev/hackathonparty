@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import docs_icon from "@/assets/google-docs.png";
 import {
   Dialog,
@@ -15,15 +15,20 @@ import {
 export default function Files() {
   const [selectedBill, setSelectedBill] = useState("Council Tax Bill");
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef(null);
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedBill(event.target.value);
   };
 
   const uploadDoc = () => {
     setLoading(true);
+
     setTimeout(() => {
       setLoading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // Reset file input after upload
+      }
     }, 2000);
   };
 
@@ -63,7 +68,12 @@ export default function Files() {
               <Label className="m-2 text-center" htmlFor="picture">
                 Upload a new document
               </Label>
-              <Input className="m-2" id="picture" type="file" />
+              <Input
+                className="m-2"
+                id="picture"
+                type="file"
+                ref={fileInputRef}
+              />
               <div className="flex flex-col p-1 m-2 gap-2 ">
                 <div className="flex flex-col gap-4">
                   <label>
