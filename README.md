@@ -1,5 +1,7 @@
 # SettleBuddy App
 
+Welcome to SettleBuddy! An app that helps new immigrants settle in the UK.
+
 ## Running backend
 
 Before running the frontend you will need to start up a local server to fetch data from the backend.
@@ -36,4 +38,3 @@ npm run dev
 ```
 
 In your browser, navigate to http://localhost:5173 to access the app.
-
