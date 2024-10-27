@@ -6,26 +6,32 @@ import { Typography } from "@/components/ui/Typography";
 import { useEffect, useState } from "react";
 
 interface User {
-  userId: string;            
-  name: string;                          
-  level: string;               
-  created_at: Date;            
+  userId: string;
+  name: string;
+  level: string;
+  created_at: Date;
   updated_at: Date;
 }
 
 interface Task {
-  taskId: string;             
-  title: string;               
-  created_at: Date;            
+  taskId: string;
+  title: string;
+  created_at: Date;
   updated_at: Date;
-  subtasks: Subtask[]            
+  subtasks: Subtask[]
 }
 
 interface Subtask {
   subtaskId: string;
   title: string;
-  created_at: Date; 
+  created_at: Date;
   updated_at: Date;
+}
+
+interface Badge {
+  id: string;
+  name: string;
+  earnedDate: string;
 }
 
 export default function Home() {
@@ -33,9 +39,13 @@ export default function Home() {
   // TODO: get these values from API
   const [user, setUser] = useState<User>()
   const [userTasks, setUserTasks] = useState<Task[]>()
-  const progressValue = 40;
-  const userTitle = "Newcomer";
-  const leftPoints = 30;
+  const [badges, setBadges] = useState<Badge[]>([])
+
+  // const progressValue = 10;
+  const progressValue = badges.length < 5 ? 20 * badges.length : 0
+  const userTitle = badges.length < 5 ? "Newcomer" : "Trailblazer";
+  const leftPoints = badges.length < 5 ? 5 - badges.length : 7;
+
 
   function getUser() {
     fetch("http://localhost:3000/users/1")
@@ -43,16 +53,23 @@ export default function Home() {
       .then(data => setUser(data))
   }
 
-  function getTasks(){
+  function getTasks() {
     fetch("http://localhost:3000/users/1/incomplete-tasks")
-    .then(response => response.json())
-    .then(data => setUserTasks(data))
+      .then(response => response.json())
+      .then(data => setUserTasks(data))
+  }
+
+  function getBadges() {
+    fetch("http://localhost:3000/user/badges/1")
+      .then(response => response.json())
+      .then(data => setBadges(data))
   }
 
   useEffect(() => {
     getUser();
     getTasks();
-  },[])
+    getBadges();
+  }, [])
 
   return (
     <Layout>
