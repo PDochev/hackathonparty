@@ -10,6 +10,7 @@ export function Layout({ children }: Props) {
     <>
       <Header />
       {children}
+      <div className="h-20"></div>
     </>
   );
 }
