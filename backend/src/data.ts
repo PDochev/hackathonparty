@@ -7,8 +7,8 @@ import Badge from "./interfaces/badge";
 export const users: User[] = [
   {
     userId: '1',
-    name: 'John Doe',
-    level: 'user',
+    name: 'Sam',
+    level: 'newcomer',
     created_at: new Date('2022-01-01T10:00:00Z'),
     updated_at: new Date('2022-01-01T10:00:00Z'),
   },
@@ -145,7 +145,7 @@ export const tasks: Task[] = [
   }, 
   {
     taskId: '5',         
-    title: 'Register with a Dentist',             
+    title: 'Register with a dentist',             
     created_at: new Date('2022-01-01T10:00:00Z'),            
     updated_at: new Date('2022-01-01T10:00:00Z'),
     subtasks: [
