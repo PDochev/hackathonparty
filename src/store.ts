@@ -10,7 +10,7 @@ type Action = {
 };
 
 export const useUserStore = create<UserState & Action>()((set) => ({
-  name: "Anom",
+  name: "Sam",
   id: "",
   updateName: (name) => set(() => ({ name })),
 }));
