@@ -38,7 +38,7 @@ const badges = [
 export default function Badges() {
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center mb-8">
         <div className="flex items-center justify-center mt-10">
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             Your badges
