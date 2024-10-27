@@ -1,3 +1,5 @@
+import { ChevronDown } from "lucide-react";
+
 import { Task } from "@/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TodoItem } from "@/components/ui/TodoItem";
@@ -28,11 +30,10 @@ export function TaskCard({ tasks = [], onToggleSubTasks }: Props) {
           </Card>
           <Card className="w-[350px] bg-gray-100">
             <CardHeader>
-              <CardTitle>Upcoming Tasks</CardTitle>
+              <CardTitle className="flex justify-between items-center">
+                Upcoming Tasks <ChevronDown className="h-4 w-4" />
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              {tasks.length > 0 && <div>{/** TODO: Implement this */}</div>}
-            </CardContent>
           </Card>
         </div>
       ) : (
