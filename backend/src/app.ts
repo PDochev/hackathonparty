@@ -1,21 +1,21 @@
 import express, { Express, Request, Response } from "express";
-import { users, tasks, userTaskProgress, userSubstaskProgress, badges} from './data'
+import { users, tasks, userTaskProgress, userSubstaskProgress, badges } from './data'
 import cors from 'cors';
 
 const app: Express = express()
 const port = 3000;
 
 
-app.use(express.json()); 
+app.use(express.json());
 
 
 const corsOptions = {
   origin: [
-    'http://localhost:5173',  
+    'http://localhost:5173',
   ],
-  methods: 'GET,POST,PUT,DELETE',  
-  allowedHeaders: 'Content-Type,Authorization', 
-  credentials: true 
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+  credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -25,17 +25,17 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // get_user_profile_info
-  app.get('/users/:id', (req: any, res: any) => {
-    const userId = req.params.id;
-    const user = users.find(u => u.userId === userId);
-  
-    if (user) {
-      console.log(user)
-      return res.status(200).json(user); 
-    }
+app.get('/users/:id', (req: any, res: any) => {
+  const userId = req.params.id;
+  const user = users.find(u => u.userId === userId);
 
-    return res.status(404).json({ message: 'User not found' }); 
-  });
+  if (user) {
+    console.log(user)
+    return res.status(200).json(user);
+  }
+
+  return res.status(404).json({ message: 'User not found' });
+});
 
 // get_user_task_list
 app.get('/users/:userId/incomplete-tasks', (req, res) => {
@@ -81,8 +81,8 @@ app.get('/users/:userId/complete-tasks', (req, res) => {
 app.get('/user/badges/:user_id', (req: any, res: any) => {
   const userId = req.params.user_id;
   const completedTasksIds = userTaskProgress
-      .filter( progress => progress.userId === userId && progress.isCompleted)
-      .map(progress => progress.taskId);
+    .filter(progress => progress.userId === userId && progress.isCompleted)
+    .map(progress => progress.taskId);
 
   const earnedBadges = badges.filter(badge => completedTasksIds.includes(badge.taskId));
 
@@ -100,7 +100,7 @@ app.get('/badge/task/:badge_id', (req: any, res: any) => {
   const badgeId = req.params.badge_id;
   const badge = badges.find(badge => badge.badgeId == badgeId);
 
-  if (!badge){
+  if (!badge) {
     return res.status(404).json({ message: 'No badge with given id found' });
   }
 
