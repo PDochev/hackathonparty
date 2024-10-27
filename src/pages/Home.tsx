@@ -18,7 +18,9 @@ interface Task {
   title: string;
   created_at: Date;
   updated_at: Date;
+
   subtasks: Subtask[];
+
 }
 
 interface Subtask {
@@ -28,14 +30,27 @@ interface Subtask {
   updated_at: Date;
 }
 
+interface Badge {
+  id: string;
+  name: string;
+  earnedDate: string;
+}
+
 export default function Home() {
   // const userName = useUserStore(({ name }) => name);
   // TODO: get these values from API
-  const [user, setUser] = useState<User>();
-  const [userTasks, setUserTasks] = useState<Task[]>();
-  const progressValue = 40;
-  const userTitle = "Newcomer";
-  const leftPoints = 30;
+
+
+  const [user, setUser] = useState<User>()
+  const [userTasks, setUserTasks] = useState<Task[]>()
+  const [badges, setBadges] = useState<Badge[]>([])
+
+  // const progressValue = 10;
+  const progressValue = badges.length < 5 ? 20 * badges.length : 0
+  const userTitle = badges.length < 5 ? "Newcomer" : "Trailblazer";
+  const leftPoints = badges.length < 5 ? 5 - badges.length : 7;
+
+
 
   function getUser() {
     fetch("http://localhost:3000/users/1")
@@ -45,14 +60,25 @@ export default function Home() {
 
   function getTasks() {
     fetch("http://localhost:3000/users/1/incomplete-tasks")
-      .then((response) => response.json())
-      .then((data) => setUserTasks(data));
+
+      .then(response => response.json())
+      .then(data => setUserTasks(data))
+  }
+
+  function getBadges() {
+    fetch("http://localhost:3000/user/badges/1")
+      .then(response => response.json())
+      .then(data => setBadges(data))
+
   }
 
   useEffect(() => {
     getUser();
     getTasks();
-  }, []);
+
+    getBadges();
+  }, [])
+
 
   return (
     <Layout>

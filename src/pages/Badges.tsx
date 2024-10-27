@@ -23,14 +23,14 @@ const badges = [
     id: 2,
     name: "An Apple a day!",
     image: badge_2,
-    task: "You have successfully registered your SIM card",
+    task: "You have successfully registered with the NHS",
     date: "Earned on 16th June 2022",
   },
   {
     id: 3,
     name: "It's Payday!",
     image: badge_3,
-    task: "You have successfully registered your SIM card",
+    task: "You have successfully opened a bank account",
     date: "Earned on 13th June 2024",
   },
 ];
