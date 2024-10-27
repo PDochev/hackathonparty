@@ -12,13 +12,14 @@ export function ExpProgress({ userTitle, value, leftPoints }: Props) {
       <div className="relative">
         <Progress value={value} className="h-[2.4rem]" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-xs font-medium text-primary-foreground drop-shadow">
-            {value}% {userTitle}
+          <span className="text-l font-medium text-primary-foreground drop-shadow">
+            {userTitle} {value}%
           </span>
         </div>
       </div>
       <div className="mt-3 text-center">
-        Complete {leftPoints} more tasks to level up
+        Complete <span className="font-semibold">{leftPoints}</span> more tasks
+        to level up
       </div>
     </div>
   );
