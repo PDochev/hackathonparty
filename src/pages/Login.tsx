@@ -34,7 +34,7 @@ function Login() {
           className="w-72 md:w-96 py-6 mx-auto flex flex-col justify-center items-center border rounded-md  "
         >
           <h3 className="scroll-m-20 text-1xl font-semibold tracking-tight">
-            Immigration
+            SettleBuddy
           </h3>
           <h2 className="scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-4">
             Welcome Back

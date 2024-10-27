@@ -1,4 +1,4 @@
-import logo from "@/assets/settlebuddyicon.png";
+import logo from "@/assets/house.svg";
 import { Link } from "react-router-dom";
 import { UserNavigationMenu } from "../business/UserNavigationMenu";
 
