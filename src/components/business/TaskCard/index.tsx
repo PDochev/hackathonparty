@@ -5,13 +5,18 @@ import { TodoItem } from "@/components/ui/TodoItem";
 interface Props {
   completed: boolean;
   tasks?: Task[];
+  onToggleSubTasks?: (taskId: string, subTaskId: string) => void;
 }
-export function TaskCard({ completed, tasks = [] }: Props) {
+export function TaskCard({ tasks = [], onToggleSubTasks }: Props) {
+  const isAllTasksCompleted = tasks.every((task) =>
+    task.subtasks.every((subtask) => subtask.isCompleted)
+  );
+
   return (
     <div>
       <div className="text-sm font-semibold text-center">What to do next:</div>
-      {completed ? (
-        <>
+      {isAllTasksCompleted ? (
+        <div className="flex flex-col items-center gap-2">
           <Card className="w-[350px] bg-gray-100">
             <CardHeader>
               <CardTitle>You're all caught up!</CardTitle>
@@ -29,11 +34,11 @@ export function TaskCard({ completed, tasks = [] }: Props) {
               {tasks.length > 0 && <div>{/** TODO: Implement this */}</div>}
             </CardContent>
           </Card>
-        </>
+        </div>
       ) : (
         <div className="flex flex-col items-center gap-2">
-          {tasks.map(({ id, title, subtasks }) => (
-            <Card className="w-[350px] bg-gray-100" key={id}>
+          {tasks.map(({ taskId, title, subtasks }) => (
+            <Card className="w-[350px] bg-gray-100" key={taskId}>
               <CardHeader className="p-4 pb-0">
                 <CardTitle>
                   {title}{" "}
@@ -42,12 +47,13 @@ export function TaskCard({ completed, tasks = [] }: Props) {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-2">
-                {subtasks.map(({ id, title, isCompleted }) => (
+                {subtasks.map(({ subtaskId, title, isCompleted }) => (
                   <TodoItem
-                    key={id}
-                    id={id}
+                    key={subtaskId}
+                    id={subtaskId}
                     title={title}
                     completed={isCompleted}
+                    onToggle={() => onToggleSubTasks?.(taskId, subtaskId)}
                   />
                 ))}
               </CardContent>
