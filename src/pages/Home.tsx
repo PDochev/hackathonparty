@@ -18,7 +18,9 @@ interface Task {
   title: string;
   created_at: Date;
   updated_at: Date;
-  subtasks: Subtask[]
+
+  subtasks: Subtask[];
+
 }
 
 interface Subtask {
@@ -37,6 +39,8 @@ interface Badge {
 export default function Home() {
   // const userName = useUserStore(({ name }) => name);
   // TODO: get these values from API
+
+
   const [user, setUser] = useState<User>()
   const [userTasks, setUserTasks] = useState<Task[]>()
   const [badges, setBadges] = useState<Badge[]>([])
@@ -47,14 +51,16 @@ export default function Home() {
   const leftPoints = badges.length < 5 ? 5 - badges.length : 7;
 
 
+
   function getUser() {
     fetch("http://localhost:3000/users/1")
-      .then(response => response.json())
-      .then(data => setUser(data))
+      .then((response) => response.json())
+      .then((data) => setUser(data));
   }
 
   function getTasks() {
     fetch("http://localhost:3000/users/1/incomplete-tasks")
+
       .then(response => response.json())
       .then(data => setUserTasks(data))
   }
@@ -63,19 +69,24 @@ export default function Home() {
     fetch("http://localhost:3000/user/badges/1")
       .then(response => response.json())
       .then(data => setBadges(data))
+
   }
 
   useEffect(() => {
     getUser();
     getTasks();
+
     getBadges();
   }, [])
+
 
   return (
     <Layout>
       <main>
-        <div className="flex flex-col items-center justify-center mx-auto">
-          <Typography.H3>Welcome back {user?.name}</Typography.H3>
+        <div className="flex flex-col items-center justify-center mx-auto mt-6 mb-">
+          <Typography.H3 className="mb-4">
+            Welcome back {user?.name}
+          </Typography.H3>
           <ExpProgress
             value={progressValue}
             userTitle={userTitle}
