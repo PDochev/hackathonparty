@@ -18,7 +18,7 @@ export function ExpProgress({ userTitle, value, leftPoints }: Props) {
         </div>
       </div>
       <div className="mt-3 text-center">
-        Get {leftPoints} more points to level up
+        Complete {leftPoints} more tasks to level up
       </div>
     </div>
   );
