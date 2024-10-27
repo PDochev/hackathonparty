@@ -16,7 +16,9 @@ export function TaskCard({ tasks = [], onToggleSubTasks }: Props) {
 
   return (
     <div>
-      <div className="text-sm font-semibold text-center">What to do next:</div>
+      <div className="text-sm font-semibold text-center mb-1">
+        What to do next:
+      </div>
       {isAllTasksCompleted ? (
         <div className="flex flex-col items-center gap-2">
           <Card className="w-[350px] bg-gray-100">
