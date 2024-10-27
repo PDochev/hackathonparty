@@ -53,7 +53,7 @@ export default function Home() {
       <main>
         <div className="flex flex-col items-center justify-center mx-auto mt-6 mb-6">
           <Typography.H3 className="mb-4">
-            Welcome back {userName}
+            Welcome back "{userName}"
           </Typography.H3>
           <ExpProgress
             value={progressValue}
