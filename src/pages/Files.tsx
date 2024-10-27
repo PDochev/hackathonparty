@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, useRef } from "react";
-import docs_icon from "@/assets/google-docs.png";
+import docs_icon from "@/assets/file.svg";
 import {
   Dialog,
   DialogContent,
@@ -138,7 +138,7 @@ export default function Files() {
               <DialogContent className="w-80 md:w-96 lg:w-96  flex justify-center items-center rounded-md">
                 <DialogHeader>
                   <DialogTitle className="text-center m-2">
-                    <h2>Your Files</h2>
+                    <h2 className="mb-4">Your Files</h2>
                     <div className="grid grid-cols-2 items-center justify-center">
                       {files.map((item) => (
                         <div className="p-1 m-2">
@@ -146,7 +146,7 @@ export default function Files() {
                             src={docs_icon}
                             className="w-16 h-16 m-auto rounded-md"
                           />
-                          <p className="text-sm text-center p-1">{item}</p>
+                          <p className="text-sm text-center p-1 mt-2">{item}</p>
                         </div>
                       ))}
                     </div>

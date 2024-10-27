@@ -1,6 +1,7 @@
 import { Task } from "@/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TodoItem } from "@/components/ui/TodoItem";
+import success_img from "@/assets/success.svg";
 
 interface Props {
   completed: boolean;
@@ -17,13 +18,19 @@ export function TaskCard({ tasks = [], onToggleSubTasks }: Props) {
       <div className="text-sm font-semibold text-center">What to do next:</div>
       {isAllTasksCompleted ? (
         <div className="flex flex-col items-center gap-2">
-          <Card className="w-[350px] bg-gray-100">
+          <Card className="w-[350px] bg-gray-100 mt-4">
             <CardHeader>
-              <CardTitle>You're all caught up!</CardTitle>
+              <CardTitle className="text-center">
+                You're all caught up!
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              {/* TODO: Insert an image */}
-              <span className="leading-7 w-fit">Nothing to do here</span>
+            <CardContent className="flex flex-col items-center justify-center">
+              <img
+                src={success_img}
+                alt="success"
+                className="w-64 h-64 m-auto"
+              />
+              <span className="leading-7 w-fit ">Nothing to do here</span>
             </CardContent>
           </Card>
           <Card className="w-[350px] bg-gray-100">
